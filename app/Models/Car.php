@@ -22,7 +22,7 @@ class Car extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'rental_id', 'name', 'transmission', 'chairs_ammount', 'vehicle_license', 'merk', 'price', 'car_type', 'photo'
+        'name', 'transmission', 'chairs_ammount', 'vehicle_license', 'merk', 'price', 'car_type', 'photo'
     ];
 
     public function rents(): HasMany

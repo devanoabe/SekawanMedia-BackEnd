@@ -61,7 +61,10 @@ Route::middleware('auth')->group(function() {
     Route::middleware(['role:admin'])->prefix('admin')->name('admin.')->group(function() {
 
         Route::resources([
+            'cars' => CarController::class,
+            'drivers' => DriverController::class,
             'rentcars' => RentcarController::class,
+            'pemesanans' => RentalController::class,
         ]);
     });
 

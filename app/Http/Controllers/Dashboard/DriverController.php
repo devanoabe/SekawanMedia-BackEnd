@@ -25,11 +25,10 @@ class DriverController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $data['rental_id'] = auth()->user()->rental->id;
 
         Driver::create($data);
 
-        return to_route('rental.drivers.index')->with('success', 'Berhasil menambahkan sopir !');
+        return to_route('admin.drivers.index')->with('success', 'Berhasil menambahkan sopir !');
     }
 
     public function edit(Driver $driver)
@@ -41,12 +40,12 @@ class DriverController extends Controller
     {
         $driver->update($request->all());
 
-        return to_route('rental.drivers.index')->with('success', 'Berhasil mengedit sopir !');
+        return to_route('admin.drivers.index')->with('success', 'Berhasil mengedit sopir !');
     }
 
     public function destroy(Driver $driver)
     {
         $driver->delete();
-        return to_route('rental.drivers.index')->with('success', 'Berhasil menghapus sopir !');
+        return to_route('admin.drivers.index')->with('success', 'Berhasil menghapus sopir !');
     }
 }

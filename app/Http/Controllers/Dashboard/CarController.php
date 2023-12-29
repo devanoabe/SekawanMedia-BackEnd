@@ -19,13 +19,14 @@ class CarController extends Controller
     public function index(): View
     {
         $data = [
-            'cars' => Car::where('rental_id', auth()->user()->rental->id)->paginate(8)
+            'cars' => Car::paginate(8)
         ];
+
         return view('dashboard.car.index', $data);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new resource.   
      *
      * @return View
      */
@@ -44,16 +45,18 @@ class CarController extends Controller
     {
         $data = $request->all();
 
-        if($request->hasFile('photo')){
+        if ($request->hasFile('photo')) {
             $data['photo'] = $request->file('photo')->store('cars', 'public');
         }
 
-        $data['rental_id'] = auth()->user()->rental->id;
+        // Jika Anda memiliki field 'rental_id' dalam form, Anda harus mengambil nilainya dari form.
+        // Contoh: $data['rental_id'] = $request->input('rental_id');
 
         Car::create($data);
 
-        return to_route('rental.cars.index')->with('success', 'Berhasil menambahkan mobil !');
+        return redirect()->route('admin.cars.index')->with('success', 'Berhasil menambahkan mobil!');
     }
+
 
     /**
      * Display the specified resource.
@@ -88,9 +91,9 @@ class CarController extends Controller
     {
         $data = $request->all();
 
-        if($request->hasFile('photo')){
-            if(Storage::exists('public/' . $car->photo)){
-                Storage::delete('public/'.$car->photo);
+        if ($request->hasFile('photo')) {
+            if (Storage::exists('public/' . $car->photo)) {
+                Storage::delete('public/' . $car->photo);
             }
 
             $data['photo'] = $request->file('photo')->store('cars', 'public');
@@ -98,7 +101,7 @@ class CarController extends Controller
 
         $car->update($data);
 
-        return to_route('rental.cars.index')->with('success', 'Berhasil mengedit mobil !');
+        return to_route('admin.cars.index')->with('success', 'Berhasil mengedit mobil !');
     }
 
     /**
@@ -109,12 +112,12 @@ class CarController extends Controller
      */
     public function destroy(Car $car): RedirectResponse
     {
-        if(Storage::exists('public/' . $car->photo)){
-            Storage::delete('public/'.$car->photo);
+        if (Storage::exists('public/' . $car->photo)) {
+            Storage::delete('public/' . $car->photo);
         }
 
         $car->delete();
 
-        return to_route('rental.cars.index')->with('success', 'Berhasil menghapus mobil !');
+        return to_route('admin.cars.index')->with('success', 'Berhasil menghapus mobil !');
     }
 }

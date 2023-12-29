@@ -24,7 +24,6 @@ class CarSeeder extends Seeder
         foreach (Rental::all() as $rental) {
             for($i = 1; $i <= 4; $i++){
                 Car::create([
-                    'rental_id' => $rental->id,
                     'name' => $cars[array_rand($cars, 1)],
                     'transmission' => $transmissions[array_rand($transmissions, 1)],
                     'vehicle_license' => 'N ' . rand(1000, 9000) . ' AB',

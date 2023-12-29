@@ -17,22 +17,33 @@
                                 <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama</th>
-                                    <th>Alamat</th>
-                                    <th>SIM</th>
-                                    <th>Aksi</th>
+                                    <th>Mobil</th>
+                                    <th>Driver</th>
+                                    <th>Start</th>
+                                    <th>End</th>
+                                    <th>BBM</th>
+                                    <th>Service</th>
+                                    <th>Riwayat</th>
+                                    <th>Status</th>
+                                    <th>Notes</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($drivers as $driver)
+                                @foreach($pemesanans as $p)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $driver->name }}</td>
-                                        <td>{{ $driver->address }}</td>
-                                        <td>{{ $driver->driver_licence }}</td>
+                                        <td>{{$p->car->name}}</td>
+                                        <td>{{($p->driver) ? $p->driver->name : '-'}}</td>
+                                        <td>{{ \Carbon\Carbon::parse($p->start_date)->locale('id')->isoFormat('D MMMM YYYY HH:mm') }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($p->end_date)->locale('id')->isoFormat('D MMMM YYYY HH:mm') }}</td>
+                                        <td>{{ $p->bbm }}</td>
+                                        <td>{{ $p->service }}</td>
+                                        <td>{{ $p->riwayat }}</td>
+                                        <td>{{ $p->status }}</td>
+                                        <td>{{ $p->notes }}</td>
                                         <td>
-                                            <a href="{{ route('admin.drivers.edit', $driver->id) }}" class="btn btn-warning btn-sm">Edit</a> |
-                                            <button class="btn btn-danger btn-sm delete" data-id="{{ $driver->id }}">Hapus</button>
+                                            <a href="{{ route('admin.pemesanans.edit', $p->id) }}" class="btn btn-warning btn-sm">Edit</a> 
+                                            <button class="btn btn-danger btn-sm delete" data-id="{{ $p->id }}">Hapus</button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -58,7 +69,7 @@
             $(document).on('click', '.delete', function () {
                 $('#exampleModal').modal('show')
                 const id = $(this).attr('data-id');
-                let url = `{{ route('admin.drivers.destroy', ':id') }}`.replace(':id', id);
+                let url = `{{ route('admin.pemesanans.destroy', ':id') }}`.replace(':id', id);
                 $('#deleteForm').attr('action', url);
             });
         });

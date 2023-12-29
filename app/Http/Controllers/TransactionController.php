@@ -12,11 +12,11 @@ class TransactionController extends Controller
     {
         $data = [
             'transaction' => Payment::query()
-                            ->whereRelation('rent', function($q) {
-                                return $q->where('users', auth()->id());
-                            })
-                            ->orderBy('date', 'desc')
-                            ->get()
+                ->whereRelation('rent', function ($q) {
+                    return $q->where('users', auth()->id());
+                })
+                ->orderBy('date', 'desc')
+                ->get()
         ];
         return view('landing.pages.transaction.index', $data);
     }
@@ -32,14 +32,12 @@ class TransactionController extends Controller
     {
         $data = [
             'transaction' => Rent::query()
-            ->whereRelation('car', function($q) {
-                return $q->whereRelation('rental', function($q){
+                ->whereHas('car.rental', function ($q) {
                     return $q->where('user_id', auth()->id());
-                });
-            })
-            ->get()
+                })
+                ->get()
         ];
-//        dd($data);
+
         return view('dashboard.transaction.index', $data);
     }
 }

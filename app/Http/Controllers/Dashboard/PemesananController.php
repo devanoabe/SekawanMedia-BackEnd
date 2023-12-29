@@ -5,13 +5,12 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Pemesanan;
 use App\Models\Car;
-use App\Models\Driver;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
-class RentalController extends Controller
+class PemesananController extends Controller
 {
     public function index(): View
     {
@@ -24,22 +23,19 @@ class RentalController extends Controller
 
     public function create(): View
     {
-        $cars = Car::all();
-        $drivers = Driver::all();
-
-        return view('dashboard.pemesanan.create', compact('cars', 'drivers'));
+        return view('dashboard.pemesanan.create');
     }
-
 
     public function store(Request $request)
     {
         $data = $request->all();
 
+        $cars = Car::all();
+
         Pemesanan::create($data);
 
         return redirect()->route('admin.pemesanan.index')->with('success', 'Berhasil menambahkan sopir !')->with('cars', $cars);
     }
-
 
     public function edit(Driver $driver)
     {

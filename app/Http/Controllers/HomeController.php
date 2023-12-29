@@ -50,11 +50,10 @@ class HomeController extends Controller
                 ->pluck('rental_id')->toArray();
 
             $cars = Car::query()
-                ->select('cars.id', 'rental_id', 'name', 'transmission', 'chairs_ammount', 'vehicle_license', 'merk', 'price', 'car_type', 'photo')
+                ->select('cars.id', 'name', 'transmission', 'chairs_ammount', 'vehicle_license', 'merk', 'price', 'car_type', 'photo')
                 ->whereRelation('rental', function ($q) use ($request) {
                     return $q->where('regency_id', $request->regency_id);
                 })
-                ->whereNotIn('rental_id', $driverRentals)
                 ->withCount(['rents' => function($q) {
                     $q->where('status', 'disewa');
                 }])
@@ -62,7 +61,7 @@ class HomeController extends Controller
                 ->paginate(9);
         }else {
             $cars = Car::query()
-                ->select('cars.id', 'rental_id', 'name', 'transmission', 'chairs_ammount', 'vehicle_license', 'merk', 'price', 'car_type', 'photo')
+                ->select('cars.id', 'name', 'transmission', 'chairs_ammount', 'vehicle_license', 'merk', 'price', 'car_type', 'photo')
                 ->whereRelation('rental', function ($q) use ($request) {
                     return $q->where('regency_id', $request->regency_id);
                 })

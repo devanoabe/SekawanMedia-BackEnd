@@ -15,7 +15,7 @@
                         <div class="card-body">
                             <form
                                 id="form"
-                                action="{{ route('rental.drivers.store') }}"
+                                action="{{ route('admin.drivers.store') }}"
                                 method="POST"
                                 enctype="multipart/form-data"
                             >

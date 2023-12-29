@@ -15,7 +15,7 @@
                         <div class="card-body">
                             <form
                                 id="form"
-                                action="{{ route('rental.cars.update', $car->id) }}"
+                                action="{{ route('admin.cars.update', $car->id) }}"
                                 method="POST"
                                 enctype="multipart/form-data"
                             >

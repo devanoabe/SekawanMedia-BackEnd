@@ -21,7 +21,7 @@
                                     <p class="card-text col-6"><i class="fas fa-id-card-alt me-3"></i> {{ $car->vehicle_license }}</p>
                                     <p class="card-text col-6"><i class="fas fa-dollar me-3"></i>Rp. {{ $car->price }}</p>
                                 </div>
-                                <a href="{{ route('rental.cars.edit', $car->id) }}" class="card-link">Edit</a>
+                                <a href="{{ route('admin.cars.edit', $car->id) }}" class="card-link">Edit</a>
                                 <a href="#" class="card-link delete" data-id="{{ $car->id }}">Hapus</a>
                             </div>
                         </div>
@@ -46,7 +46,7 @@
             $(document).on('click', '.delete', function () {
                 $('#exampleModal').modal('show')
                 const id = $(this).attr('data-id');
-                let url = `{{ route('rental.cars.destroy', ':id') }}`.replace(':id', id);
+                let url = `{{ route('admin.cars.destroy', ':id') }}`.replace(':id', id);
                 $('#deleteForm').attr('action', url);
             });
         });
