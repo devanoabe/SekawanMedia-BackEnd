@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pemesanans', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
             $table->foreignUuid('car_id')->constrained('cars')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('driver_id')->nullable()->constrained('drivers')->cascadeOnDelete()->cascadeOnUpdate();
             $table->dateTime('start_date');
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('bbm');
             $table->dateTime('service');
             $table->string('riwayat');
-            $table->enum('status', ['no', 'yes']);
+            $table->integer('status')->default(0);
             $table->text('notes')->nullable();
             $table->timestamps();
         });

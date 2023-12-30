@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Pemesanan;
 use App\Models\Rent;
 use App\Models\Rental;
 use App\Models\User;
@@ -16,7 +17,7 @@ class HomeController extends Controller
         $data = [
             'rentals' => Rental::all(),
             'users' => User::whereHas("roles", function($q){ $q->where("name", "customer"); })->get(),
-            'transactions' => Rent::all()
+            'pemesanans' => Pemesanan::all()
         ];
         return view('dashboard.home', $data);
     }

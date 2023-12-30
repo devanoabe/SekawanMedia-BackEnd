@@ -16,13 +16,13 @@
                 <div class="col-4">
                     <div class="card card-body">
                         <h1>{{ count($rentals) }}</h1>
-                        <p>Rental</p>
+                        <p>Pihak Penyetuju</p>
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="card card-body">
-                        <h1>{{ count($transactions) }}</h1>
-                        <p>Transaksi</p>
+                        <h1>{{ count($pemesanans) }}</h1>
+                        <p>Pemesanan</p>
                     </div>
                 </div>
             </div>

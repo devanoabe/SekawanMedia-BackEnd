@@ -37,7 +37,6 @@
 
 @yield('content')
 
-@include('landing.layouts.footer')
 
 
 

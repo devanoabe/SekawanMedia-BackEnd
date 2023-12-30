@@ -34,14 +34,31 @@
                                     </select>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label">SIM</label>
-                                    <input type="text" value="{{ old('driver_licence') }}" name="driver_licence" class="form-control" placeholder="1221-xxxx-xxxxxx" />
+                                    <label class="form-label">Start</label>
+                                    <input type="date" value="{{ old('start_date') ? \Carbon\Carbon::parse(old('start_date'))->format('Y-m-d') : '' }}" name="start_date" class="form-control" />
                                 </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">End</label>
+                                    <input type="date" value="{{ old('start_date') ? \Carbon\Carbon::parse(old('start_date'))->format('Y-m-d') : '' }}" name="end_date" class="form-control" />
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">BBM</label>
+                                    <input type="number" min="0" class="form-control" name="bbm" value="{{ old('bbm') }}" placeholder="2">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Service</label>
+                                    <input type="date" value="{{ old('start_date') ? \Carbon\Carbon::parse(old('start_date'))->format('Y-m-d') : '' }}" name="service" class="form-control" />
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Riwayat</label>
+                                    <input type="text" class="form-control" name="riwayat" value="{{ old('riwayat') }}" placeholder="Bagus">
+                                </div>
+
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-12">
-                                    <label class="form-label">Alamat</label>
-                                    <textarea type="number" rows="4" cols="4" class="form-control" name="address" value="{{ old('chairs_ammount') }}" placeholder="Jl Pemuda No 28 A, Malang"></textarea>
+                                    <label class="form-label">Notes</label>
+                                    <textarea type="text" rows="4" cols="4" class="form-control" name="notes" value="{{ old('notes') }}" placeholder="Notes yang ingin disampaikan"></textarea>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary">

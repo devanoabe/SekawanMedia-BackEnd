@@ -52,7 +52,7 @@
             </li>
             <li class="sidebar-item {{ request()->routeIs('admin.rentcars.*') ? 'active' : '' }}">
                 <a data-bs-target="#pages-penyetuju" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                    <i class="align-middle me-2 fas fa-fw fa-car"></i>
+                    <i class="align-middle me-2 fas fa-fw fa-check"></i>
                     <span class="align-middle">Pihak Penyetuju</span>
                 </a>
                 <ul id="pages-penyetuju" class="sidebar-dropdown list-unstyled collapse {{ request()->routeIs('admin.rentcars.*') ? 'show' : '' }}" data-bs-parent="#sidebar">
@@ -66,7 +66,7 @@
             </li>
             <li class="sidebar-item {{ request()->routeIs('admin.pemesanans.*') ? 'active' : '' }}">
                 <a data-bs-target="#pages-pemesanan" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                    <i class="align-middle me-2 fas fa-fw fa-car"></i>
+                    <i class="align-middle me-2 fas fa-fw fa-folder"></i>
                     <span class="align-middle">Pemesanan</span>
                 </a>
                 <ul id="pages-pemesanan" class="sidebar-dropdown list-unstyled collapse {{ request()->routeIs('admin.pemesanans.*') ? 'show' : '' }}" data-bs-parent="#sidebar">
@@ -80,22 +80,10 @@
             </li>
 
             @elseif(auth()->user()->roles->pluck('name')[0] == 'rental')
-            <li class="sidebar-item {{ request()->routeIs('rental.transaksi') ? 'active' : '' }}">
-                <a class="sidebar-link " href="{{ route('rental.transaksi') }}">
+            <li class="sidebar-item {{ request()->routeIs('rental.pemesanans.index') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('rental.pemesanans.index') }}">
                     <i class="fas fa-exchange-alt"></i>
-                    <span class="align-middle">Transaksi</span>
-                </a>
-            </li>
-            <li class="sidebar-item {{ request()->routeIs('rental.denda') ? 'active' : '' }}">
-                <a class="sidebar-link" href="{{ route('rental.denda') }}">
-                    <i class="fas fa-dollar-sign"></i>
-                    <span class="align-middle">Denda</span>
-                </a>
-            </li>
-            <li class="sidebar-item {{ request()->routeIs('rental.rental.edit') ? 'active' : '' }}">
-                <a class="sidebar-link " href="{{ route('rental.rental.edit', auth()->user()->rental->id) }}">
-                    <i class="align-middle" data-feather="sliders"></i>
-                    <span class="align-middle">Profile </span>
+                    <span class="align-middle">Penyetuju</span>
                 </a>
             </li>
             @endif

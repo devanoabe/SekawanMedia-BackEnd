@@ -4,12 +4,14 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Dashboard\CarController;
 use App\Http\Controllers\Dashboard\DriverController;
 use App\Http\Controllers\Dashboard\HomeController;
-use App\Http\Controllers\{ContactController,
+use App\Http\Controllers\{
+    ContactController,
     Dashboard\ConditionController,
     Dashboard\ProfileRentalController,
     Dashboard\RentalController,
     HomeController as LandingHomeController,
-    TransactionController};
+    TransactionController
+};
 use App\Http\Controllers\Dashboard\RentcarController;
 //use App\Http\Controllers\UserController;
 use App\Http\Controllers\PunishmentController;
@@ -27,19 +29,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-   return view('landing.pages.home.index');
+    return view('landing.pages.home.index');
 });
 /* Route::get('/edit', function () {
    return view('dashboard.editProfile.index');
 }); */
 
-Route::name('landing.')->group(function() {
+Route::name('landing.')->group(function () {
     Route::get('/', [LandingHomeController::class, 'index'])->name('home');
 
     Route::get('/about', [AboutController::class, 'index'])->name('about');
     Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 
-    Route::middleware('auth')->group(function() {
+    Route::middleware('auth')->group(function () {
         Route::get('/search/', [LandingHomeController::class, 'searchRentals'])->name('searchRentals');
         Route::get('/detail/{car}', [LandingHomeController::class, 'detailRent'])->name('detailRent');
         Route::post('/bayar', [LandingHomeController::class, 'bayar'])->name('bayar');
@@ -51,15 +53,15 @@ Route::name('landing.')->group(function() {
 
 Auth::routes();
 
-Route::middleware('auth')->group(function() {
+Route::middleware('auth')->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     Route::get('profile/{id}/edit', [ProfileRentalController::class, 'edit'])->name('edit-profile');
     Route::post('profile/{id}/update', [ProfileRentalController::class, 'update'])->name('update-profile');
 
 
-    Route::middleware(['role:admin'])->prefix('admin')->name('admin.')->group(function() {
-
+    Route::middleware(['role:admin'])->prefix('admin')->name('admin.')->group(function () {
+        Route::get('download-excel', [RentalController::class, 'exportExcel'])->name('download-excel');
         Route::resources([
             'cars' => CarController::class,
             'drivers' => DriverController::class,
@@ -68,18 +70,18 @@ Route::middleware('auth')->group(function() {
         ]);
     });
 
-    Route::middleware(['role:rental'])->prefix('rental')->name('rental.')->group(function() {
-
+    Route::middleware(['role:rental'])->prefix('rental')->name('rental.')->group(function () {
+        Route::match(['get', 'post'], 'master/pemesanan/yes{id}', [RentalController::class, 'ubahStatus'])->name('yes');
         Route::resources([
-            'cars' => CarController::class,
-            'drivers' => DriverController::class,
-            'conditions' => ConditionController::class,
-            'rental' => RentalController::class,
+            // 'cars' => CarController::class,
+            // 'drivers' => DriverController::class,
+            // 'conditions' => ConditionController::class,
+            'pemesanans' => RentalController::class,
         ]);
-        Route::get('/transaksi', [TransactionController::class, 'transaksiRental'])->name('transaksi');
-        Route::get('/denda', [PunishmentController::class, 'index'])->name('denda');
-        Route::post('/storeDenda', [PunishmentController::class, 'store'])->name('storeDenda');
-        Route::get('/setSelesai/{rent}', [TransactionController::class, 'setSelesai'])->name('setSewaSelesai');
+        // Route::get('/transaksi', [TransactionController::class, 'transaksiRental'])->name('transaksi');
+        // Route::get('/denda', [PunishmentController::class, 'index'])->name('denda');
+        // Route::post('/storeDenda', [PunishmentController::class, 'store'])->name('storeDenda');
+        // Route::get('/setSelesai/{rent}', [TransactionController::class, 'setSelesai'])->name('setSewaSelesai');
     });
 });
 

@@ -10,7 +10,7 @@ class Pemesanan extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['car_id', 'driver_id', 'start_date', 'end_date', 'bbm', 'service', 'riwayat', 'status', 'notes'];
+    protected $fillable = ['car_id', 'driver_id', 'start_date', 'end_date', 'bbm', 'service', 'riwayat', 'notes'];
 
     public function car(): BelongsTo
     {
