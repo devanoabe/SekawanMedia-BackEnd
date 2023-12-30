@@ -40,6 +40,7 @@ DB_PASSWORD=
   # run php artisan db:seed --class=DatabaseSeeder
   ./seeder.sh
 ```
+- or download database sekawan.sql
 
 - open terminal for make storage:link
 
