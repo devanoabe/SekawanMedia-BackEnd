@@ -4,14 +4,13 @@
     <main class="content">
         <div class="container-fluid p-0">
 
-            <h1 class="h3 mb-3">Halaman Rental Mobil</h1>
+            <h1 class="h3 mb-3">Halaman Penyetuju</h1>
 
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title">Rental Mobil</h5>
-                            <h6 class="card-subtitle text-muted">List rental mobil yang terdaftar di rentcar.</h6>
+                            <h6 class="card-subtitle text-muted">List Penyetuju.</h6>
                         </div>
                         <div class="card-body">
                             <table id="datatables-reponsive" class="table table-striped" style="width:100%">

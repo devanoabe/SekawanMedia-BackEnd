@@ -1,7 +1,7 @@
 @extends('dashboard.layout.app') @section('content')
     <main class="content">
         <div class="container-fluid p-0">
-            <h1 class="h3 mb-3">Halaman Rental</h1>
+            <h1 class="h3 mb-3">Tambah Penyetuju</h1>
 
             <div class="row">
                 <div class="col-12">
@@ -9,9 +9,6 @@
                         <x-errors-component />
                     @endif
                     <div class="card">
-                        <div class="card-header">
-                            <h5 class="card-title mb-0">Tambah Rental</h5>
-                        </div>
                         <div class="card-body">
 
                             <div class="col-12">
