@@ -61,7 +61,7 @@
                     <div class="d-table-cell align-middle">
 
                         <div class="text-center mt-4">
-                            <h1 class="h2">Selamat Datang di RentCar</h1>
+                            <h1 class="h2">Selamat Datang</h1>
                             <p class="lead">
                                 Daftar akun baru
                             </p>
